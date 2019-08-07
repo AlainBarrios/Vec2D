@@ -53,9 +53,8 @@ class Vec2 {
   }
 
   lerp(l, c, t) {
-    const x = t * (c.x - l.x) + l.x;
-    const y = t * (c.y - l.y) + l.y;
-    return this.set(x, y);
+    const v = t * (c - l) + l;
+    return v;
   }
 
   dot(p1, p2) {
@@ -93,9 +92,13 @@ class Vec2 {
 
     return this.set(out1, out2);
   }
-  
-  clamp(v, min, max){
-    return Math.max(min, Math.min(v, max))
+
+  clamp(v, min, max) {
+    return Math.max(min, Math.min(v, max));
+  }
+
+  map(value, low1, high1, low2, high2) {
+    return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
   }
 
   set(x = 0, y = 0, z = 0) {
